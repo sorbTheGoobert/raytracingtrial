@@ -26,9 +26,9 @@ body {
 #arrow {
     position: relative;
     top: 4px;
-    left: 4px;
-    width: 2px;
-    height: 30px;
+    left: -26px;
+    width: 30px;
+    height: 2px;
     background-color: inherit;
-    transform-origin: 0% 0%;
+    transform-origin: 100% 0%;
 }

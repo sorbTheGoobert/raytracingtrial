@@ -65,27 +65,28 @@ function movePlayer() {
         player.style.left = `${playerX}px`;
     }
     if(event.key == "a" || event.key == "A" || event.key == "ArrowLeft"){
-        playerAngle+=12;
+        playerAngle-=0.1;
         if(playerAngle < 0){
-            playerAngle+=360;
+            playerAngle+=2 * Math.PI;
         }
         playerXdelta = Math.cos(playerAngle)*5;
         playerYdelta = Math.sin(playerAngle)*5;
         console.log(playerXdelta + " " + playerY);
     }
     if(event.key == "d" || event.key == "D" || event.key == "ArrowRight"){
-        playerAngle-=12;
-        if(playerAngle > 360){
-            playerAngle-=360;
+        playerAngle+=0.1;
+        if(playerAngle > 2 * Math.PI){
+            playerAngle -= 2 * Math.PI;
         }
         playerXdelta = Math.cos(playerAngle)*5;
         playerYdelta = Math.sin(playerAngle)*5;
         console.log(playerXdelta + " " + playerY);
     }
-    document.getElementById("arrow").style.transform = `rotate(${playerAngle}deg)`;
-    document.getElementById("arrow").style.top = "4px"
-    document.getElementById("arrow").style.left = "4px"
-    // console.log(playerAngle);
+    // player.style.transform = `rotate(${playerAngle}rad)`;
+    document.getElementById("arrow").style.transform = `rotate(${playerAngle}rad)`;
+    // document.getElementById("arrow").style.top = "4px"
+    // document.getElementById("arrow").style.left = "4px"
+    console.log(playerAngle);
 }
 
 drawMap();
