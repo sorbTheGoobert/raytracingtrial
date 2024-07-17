@@ -1,2 +1,0 @@
-# raytracingtrial
-just gonna try
