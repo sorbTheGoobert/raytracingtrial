@@ -12,8 +12,8 @@ body {
 }
 #minimap {
     background-color: grey;
-    width: 560px;
-    height: 560px;
+    width: 561px;
+    height: 561px;
 }
 
 #player {
@@ -30,4 +30,5 @@ body {
     width: 2px;
     height: 30px;
     background-color: inherit;
+    transform-origin: 0% 0%;
 }

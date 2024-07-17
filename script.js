@@ -28,9 +28,9 @@ function drawMap() {
             cell.style.left = `${xo}px`;
             cell.style.top = `${yo}px`;
             if(map[y * mapXlength + x] == 1){
-                cell.style.backgroundColor = "#000";
-            }else{
                 cell.style.backgroundColor = "#FFF";
+            }else{
+                cell.style.backgroundColor = "#000";
             }
         }
     }
@@ -47,19 +47,45 @@ function drawPlayer() {
     playerY = player.offsetTop;
 }
 
-var playerXdelta;
-var playerYdelta;
-var playerAngle;
+var playerXdelta = Math.cos(playerAngle)*5;
+var playerYdelta = Math.sin(playerAngle)*5;
+var playerAngle = 0;
 
 function movePlayer() {
     if(event.key == "w" || event.key == "W" || event.key == "ArrowUp"){
-        playerY-=5;
+        playerX-=playerXdelta;
+        playerY-=playerYdelta;
         player.style.top = `${playerY}px`;
+        player.style.left = `${playerX}px`;
     }
     if(event.key == "s" || event.key == "S" || event.key == "ArrowDown"){
-        playerY+=5;
+        playerX+=playerXdelta;
+        playerY+=playerYdelta;
         player.style.top = `${playerY}px`;
+        player.style.left = `${playerX}px`;
     }
+    if(event.key == "a" || event.key == "A" || event.key == "ArrowLeft"){
+        playerAngle+=12;
+        if(playerAngle < 0){
+            playerAngle+=360;
+        }
+        playerXdelta = Math.cos(playerAngle)*5;
+        playerYdelta = Math.sin(playerAngle)*5;
+        console.log(playerXdelta + " " + playerY);
+    }
+    if(event.key == "d" || event.key == "D" || event.key == "ArrowRight"){
+        playerAngle-=12;
+        if(playerAngle > 360){
+            playerAngle-=360;
+        }
+        playerXdelta = Math.cos(playerAngle)*5;
+        playerYdelta = Math.sin(playerAngle)*5;
+        console.log(playerXdelta + " " + playerY);
+    }
+    document.getElementById("arrow").style.transform = `rotate(${playerAngle}deg)`;
+    document.getElementById("arrow").style.top = "4px"
+    document.getElementById("arrow").style.left = "4px"
+    // console.log(playerAngle);
 }
 
 drawMap();
