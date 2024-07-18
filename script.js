@@ -18,11 +18,11 @@ var mapX = 8;
 var mapY = 8;
 var mapSize = 64;
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
-async function drawMap() {
+/*async*/ function drawMap() {
     for(var i = 0; i < 8; i++){
         for(var l = 0; l < 8; l++){
             if(map[l * 8 + i] == 1){
