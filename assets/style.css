@@ -5,39 +5,6 @@ body {
     margin: 0;
     overflow: visible;
 }
-.box {
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-}
-#minimap {
-    background-color: grey;
-    width: 561px;
-    height: 561px;
-}
-
-#player {
-    position: absolute;
-    background-color: yellow;
-    width: 10px;
-    height: 10px;
-}
-
-#arrow {
-    position: relative;
-    top: 4px;
-    left: -26px;
-    width: 30px;
-    height: 2px;
-    background-color: inherit;
-    transform-origin: 100% 0%;
-}
-
-.ray {
-    height: 2px;
-    position: relative;
-    top: 2px;
-    left: 4px;
-    background-color: green;
-    transform-origin: 0% 0%;
+#canvas {
+    border: 2px black solid;
 }
