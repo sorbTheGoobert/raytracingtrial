@@ -32,3 +32,12 @@ body {
     background-color: inherit;
     transform-origin: 100% 0%;
 }
+
+.ray {
+    height: 2px;
+    position: relative;
+    top: 2px;
+    left: 4px;
+    background-color: green;
+    transform-origin: 0% 0%;
+}

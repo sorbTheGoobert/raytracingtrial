@@ -71,7 +71,6 @@ function movePlayer() {
         }
         playerXdelta = Math.cos(playerAngle)*5;
         playerYdelta = Math.sin(playerAngle)*5;
-        console.log(playerXdelta + " " + playerY);
     }
     if(event.key == "d" || event.key == "D" || event.key == "ArrowRight"){
         playerAngle+=0.1;
@@ -80,14 +79,63 @@ function movePlayer() {
         }
         playerXdelta = Math.cos(playerAngle)*5;
         playerYdelta = Math.sin(playerAngle)*5;
-        console.log(playerXdelta + " " + playerY);
     }
     // player.style.transform = `rotate(${playerAngle}rad)`;
     document.getElementById("arrow").style.transform = `rotate(${playerAngle}rad)`;
     // document.getElementById("arrow").style.top = "4px"
     // document.getElementById("arrow").style.left = "4px"
-    console.log(playerAngle);
 }
 
+var ray = document.createElement("div");
+ray.className = "ray";
+player.appendChild(ray);
+
+function drawRays() {
+    var r, mx, my, mp, dof;
+    var rx, ry, ra, xo = 0, yo = 0;
+    ra = playerAngle;
+    for(r = 0; r < 1; r++){
+        dof = 0;
+        var aTan = -1 * Math.tan(ra);
+        if(ra > Math.PI){
+            ry = Math.round(playerY)/121-0.00001;
+            rx = (playerY - ry) * aTan + playerX;
+            yo = -121;
+            xo = -1 * yo * aTan;
+        }
+        if(ra < Math.PI){
+            ry = Math.round(playerY)/121 + 121;
+            rx = (playerY - ry) * aTan + playerX;
+            yo = 121;
+            xo = -1 * yo * aTan;
+        }
+        if(ra == 0 || ra == Math.PI){
+            rx = playerX;
+            ry = playerY;
+            dof = 11;
+        }
+        console.log(`rx = ${rx}`);
+        console.log(`ry = ${ry}`);
+        while(dof < 11){
+            mx = Math.floor(rx) >> 11;
+            my = Math.floor(ry) >> 11;
+            mp = my * mapXlength + mx;
+            console.log(`${mp} mP111`);
+            if(mp < mapXlength * mapYlength && map[mp] == 1){
+                dof = 11;
+                console.log("hit wall");
+            }
+            else{
+                rx+=xo;
+                ry+=yo;
+                dof+=1;
+            }
+        }
+        ray.style.width = `${Math.abs(rx - playerX)}px`
+        // console.log(Math.abs(rx - playerX));
+        ray.style.transform = `rotate(${playerAngle - Math.PI}rad)`;
+    }
+}
+setInterval(drawRays, 1000);
 drawMap();
 drawPlayer();
