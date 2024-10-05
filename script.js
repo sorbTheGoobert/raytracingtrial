@@ -26,7 +26,7 @@ const player_size = 15
 const player_color = "yellow";
 const player_speed = 2;
 const player_turnspeed = 0.05;
-let player_angle = 0;
+let player_angle = 1.5 * PI;
 const player_keys = {
     w: false,
     a: false,
