@@ -14,6 +14,7 @@ const MAP = [
   [1, 0, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1, 1],
 ];
+const CELL_SIZE = 100;
 
 // * Player
 // Init
@@ -34,6 +35,21 @@ const player_keys = {
   left: false,
   right: false,
 };
+const turnToIndex = (x, y) => {
+  return [Math.floor(x / CELL_SIZE), Math.floor(y / CELL_SIZE)];
+}
+
+// * RayCasting Part
+const castSingleRay = () => {
+  castHorizontalRay();
+}
+
+// * Vertical wall check
+const castHorizontalRay = () => {
+  let [rxindex, ryindex] = turnToIndex(player_POS.x, player_POS.y)
+  console.log({rxindex, ryindex});
+}
+
 const initControls = () => {
   window.addEventListener("keydown", (e) => {
     switch (e.code) {
@@ -118,6 +134,8 @@ const player_update = () => {
   if (player_angle < 0) {
     player_angle += 2 * PI;
   }
+
+  castSingleRay();
 };
 
 // * Drawing methods
@@ -147,7 +165,7 @@ const drawMap = () => {
     for (let col = 0; col < MAP[row].length; col++) {
       if (MAP[row][col] == 1) {
         ctx.fillStyle = "black";
-        ctx.fillRect(row * 100, col * 100, 100, 100);
+        ctx.fillRect(row * CELL_SIZE, col * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       }
     }
   }
